@@ -1,36 +1,36 @@
-const {Datatypes} = require("sequelize")
+const {DataTypes} = require("sequelize")
 const sequelize = require("./db");
 
 const Financial = sequelize.define("financial", {
   id: {
-    type: Datatypes.INTEGER,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   userId: {
-    type: Datatypes.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   description: {
-    type: Datatypes.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
-  data:{
-    type:Datatypes.DATE,
-    allowNull:false
+  data: {
+    type: DataTypes.DATE,
+    allowNull: false,
   },
-  amount:{
-    type: Datatypes.DECIMAL,
-    allowNull: false
+  amount: {
+    type: DataTypes.DECIMAL,
+    allowNull: false,
   },
-  category:{
-    type:Datatypes.STRING,
-    allowNull:false
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
-  paymentMethod:{
-    type:Datatypes.STRING,
-    allowNull:false
-  }
+  paymentMethod: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 Financial.sync({force:false}).then(()=>{
