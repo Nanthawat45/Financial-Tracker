@@ -15,13 +15,16 @@ const Financial = sequelize.define("financial", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  data: {
+  date: {
     type: DataTypes.DATE,
     allowNull: false,
   },
   amount: {
     type: DataTypes.DECIMAL,
     allowNull: false,
+    validate: {
+      min: 0
+    }
   },
   category: {
     type: DataTypes.STRING,
@@ -37,4 +40,6 @@ Financial.sync({force:false}).then(()=>{
     console.log("Table created or already exists");
 }).catch((error)=>{
 console.log("Error created or Financial Table", error);
-})
+});
+
+module.exports = Financial;

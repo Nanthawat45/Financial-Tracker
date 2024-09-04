@@ -17,7 +17,6 @@ app.get("/", (req,res) =>{
     res.send("<h1>Financial Tracker API</h1>")
 });
 
-
 //use router
 app.use("/api/vi/financial", financialrouter);
 
