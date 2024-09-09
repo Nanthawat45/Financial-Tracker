@@ -15,3 +15,13 @@ const getByUserId = async(record)=> {
 };
 
 //update a record
+const FinancialService = {
+  getAllFinancialRecords,
+  getAllFinancialRecordsByUserId,
+  getAllFinancialRecordsById,
+  createFinancialRecord,
+  updateFinancialRecord,
+  deleteFinancialRecord,
+};
+
+export default FinancialService;

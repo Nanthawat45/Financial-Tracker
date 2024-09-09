@@ -1,5 +1,5 @@
 import React from 'react'
-import{ useFinancialRcords } from "../../contexts/financial.service";
+import { useFinancialRcords } from "../../contexts/financial.contexts";
 
 const FinancialRecordTable = () => {
     const{ records } = useFinancialRcords();
@@ -17,21 +17,23 @@ const FinancialRecordTable = () => {
                 <th>Date</th>
                 <th>Category</th>
                 <th>Payment Method</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </table>
             <table>
-                {/* row 1 */}
-                {records.map((record)=>(
-                    <tr key={record.id}>
-                        <td>{record.id}</td>
-                        <td>{record.description}</td>
-                        <td>{record.amount}</td>
-                        <td>{record.date}</td>
-                        <td>{record.category}</td>
-                        <td>{record.paymentMethod}</td>
-                    </tr>
-                ))}
-                {/* row 2 */}
+              {/* row 1 */}
+              {records.map((record) => (
+                <tr key={record.id}>
+                  <td>{record.id}</td>
+                  <td>{record.description}</td>
+                  <td>{record.amount}</td>
+                  <td>{record.date}</td>
+                  <td>{record.category}</td>
+                  <td>{record.paymentMethod}</td>
+                </tr>
+              ))}
+              {/* row 2 */}
             </table>
           </table>
         </div>
