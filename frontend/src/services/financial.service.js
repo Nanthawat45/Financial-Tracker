@@ -14,6 +14,14 @@ const getByUserId = async(record)=> {
     return await api.post(`${FINANCIAL_API_URL}`, record);
 };
 
+const updateFinancialRecord = async (record) => {
+  return await api.post(`${FINANCIAL_API_URL}`, record);
+};
+
+const deleteFinancialRecord = async (record) => {
+  return await api.post(`${FINANCIAL_API_URL}`, record);
+};
+
 //update a record
 const FinancialService = {
   getAllFinancialRecords,

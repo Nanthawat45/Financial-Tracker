@@ -1,45 +1,37 @@
-import{createContext, useContext, useEffect,useState} from "react";
-import FinancialService from"../services/financial.service";
-import{useUser} from "@clerk/clerk-react";
-import { update } from "../../../backend/controllers/financial.controller";
+import { createContext, useContext, useEffect, useState } from "react";
+import FinancialService from "../services/financial.service";
+import { useUser } from "@clerk/clerk-react";
 
+// เปลี่ยนชื่อ Context ให้ถูกต้อง
 export const FinancialRecordContext = createContext();
 
-export const FinancialRecordProvider = ({childern})=>{
-    const [records, setRecords] = useState([])
-    const {user} = useUser();
+export const FinancialRecordsProvider = ({ children }) => {
+  const [records, setRecords] = useState([]);
+  const { user } = useUser();
 
-    const fetchRecords = async ()=>{
-        if(!user) return;
-        try{
-            const response = await FinancialService.getAllFinancialRecordsByUserId(user.id);
-            if(response.status ===200){
-                setRecords(response.data);
-            }
-        }catch(error){
-            console.log(error);
-        }
-    };
-    useEffect(() => {
+  const fetchRecords = async () => {
+    if (!user) return;
+    try {
+      const response = await financialservice.getAllFinancialRecordsByUserId(
+        user.id
+      );
+      if (response.status === 200) {
+        setRecords(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
     fetchRecords();
   }, [user]);
 
-        const addRecord = async(record)=>{
-            try{
-                const response = await FinancialService.addRecord(record);
-                if(response.status === 200){
-                    setRecords((prev)=>[...prev, response.data]);
-                }
-            }catch (error){
-                console.log();
-            }
-        };
-    
- const deleteRecord = async (id) => {
+  const addRecord = async (record) => {
     try {
-      const response = await FinancialService.deleteFinancialRecord(id);
+      const response = await financialservice.createFinancialRecord(record);
       if (response.status === 200) {
-        setRecords((prev) => prev.filter((record) => record.id !== id));
+        setRecords((prev) => [...prev, response.data]);
       }
     } catch (error) {
       console.log(error);
@@ -48,14 +40,27 @@ export const FinancialRecordProvider = ({childern})=>{
 
   const updateRecord = async (id, newRecord) => {
     try {
-      const response = await FinancialService.updateFinancialRecord(
+      const response = await financialservice.updateFinancialRecord(
         id,
         newRecord
       );
       if (response.status === 200) {
         setRecords((prev) =>
-          prev.map((record) => (record.id === id ? newRecord : record))
+          prev.map((record) =>
+            record.id === id ? { ...record, ...response.data } : record
+          )
         );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteRecord = async (id) => {
+    try {
+      const response = await financialservice.deleteFinancialRecord(id);
+      if (response.status === 200) {
+        setRecords((prev) => prev.filter((record) => record.id !== id));
       }
     } catch (error) {
       console.log(error);
@@ -66,14 +71,10 @@ export const FinancialRecordProvider = ({childern})=>{
     <FinancialRecordContext.Provider
       value={{ records, addRecord, updateRecord, deleteRecord }}
     >
-      {childern}
+      {children}
     </FinancialRecordContext.Provider>
   );
+};
 
-
-        
-        
-}
-export const useFinancialRecords = () => useContext
-(FinancialRecordContext);
-
+// ส่งออก hook สำหรับการใช้ context
+export const useFinancialRecord = () => useContext(FinancialRecordContext);
