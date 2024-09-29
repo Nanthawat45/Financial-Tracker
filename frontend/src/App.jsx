@@ -1,9 +1,10 @@
-import React from 'react'
+import { FinancialRecordsProvider } from "../contexts/financial.contexts"; // ตรวจสอบ path ที่ถูกต้อง
 
-const App = () => {
+function App() {
   return (
-    <div>App</div>
-  )
+    <FinancialRecordsProvider>
+      <RouterProvider router={router} />
+    </FinancialRecordsProvider>
+  );
 }
-
 export default App

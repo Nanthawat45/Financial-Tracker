@@ -1,27 +1,28 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import Add from "../pages/Add";
 import Home from "../pages/Home";
-import Dashbard from "../pages/dashbo";
+import Dashbord from "../pages/dashboard";
+import { FinancialRecordsProvider } from "../contexts/financial.contexts"; // นำเข้า provider
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <MainLayout />, // MainLayout
     children: [
       {
         path: "",
         element: <Home />,
       },
-    //   {
-    //     path: "dashbard",
-    //     element: <Dashbard />,
-    //   },
       {
-        path: "/add",
-        element: <Add />,
+        path: "dashboard",
+        element: (
+          <FinancialRecordsProvider> {/* ห่อหุ้ม Dashbord ด้วย FinancialRecordsProvider */}
+            <Dashbord />
+          </FinancialRecordsProvider>
+        ),
       },
     ],
   },
 ]);
+
 export default router;

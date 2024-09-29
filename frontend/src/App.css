@@ -1,0 +1,11 @@
+/* ตัวอย่างการกำหนดธีมใน CSS */
+[data-theme="dark"] {
+    background-color: #333; /* ธีมมืด */
+    color: #fff;
+  }
+  
+  [data-theme="light"] {
+    background-color: #fff; /* ธีมสว่าง */
+    color: #000;
+  }
+  
