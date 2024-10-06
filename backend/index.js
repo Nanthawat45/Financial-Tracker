@@ -5,7 +5,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 const corsOptions = {
-    origin:"https://financial-tracker-o2l9pr0ui-nanthawat45s-projects.vercel.app"
+    origin:"https://financial-tracker-4jz0bji3r-nanthawat45s-projects.vercel.app"
 };
 
 //use Middleware
