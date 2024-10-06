@@ -6,7 +6,6 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/clerk-react";
-
 const Navbar = () => {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "dark"; // ค่าเริ่มต้น
@@ -32,6 +31,7 @@ const Navbar = () => {
       </div>
       <div className="flex-none space-x-2">
         <div className="space-x-2">
+        <header>
           <SignedOut>
             <SignUpButton mode="modal" className="btn btn-outline btn-primary" />
             <SignInButton mode="modal" className="btn btn-outline btn-secondary" />
@@ -39,6 +39,7 @@ const Navbar = () => {
           <SignedIn>
             <UserButton />
           </SignedIn>
+          </header>
         </div>
         <div>
           <label className="flex cursor-pointer gap-2">

@@ -2,17 +2,15 @@ import React, { useMemo } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { useFinancialRecord } from "../../contexts/financial.contexts";
 import AddRecordForm from "./AddRecordForm";
-import FinancialRecordTable from "../dashboard/FinancialRecordTable"; // ตรวจสอบเส้นทาง
+import FinancialRecordTable from "../dashboard/FinancialRecordTable";
 
 const Dashbord = () => {
   const { user } = useUser();
   const { records } = useFinancialRecord();
-
-  // ตรวจสอบให้แน่ใจว่า records มีค่า
+  
   if (!records) {
       return <div>Loading...</div>; 
   }
-
   const totalMonthly = useMemo(() => {
       let totalAmount = 0;
       records.forEach((record) => {
@@ -39,6 +37,5 @@ const Dashbord = () => {
       </div>
   );
 };
-
 
 export default Dashbord;
